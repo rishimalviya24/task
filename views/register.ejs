@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Account</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom background image */
+    body {
+      background-image: url('https://images.unsplash.com/file-1720553225363-8064931ae669image?w=416&dpr=2&auto=format&fit=crop&q=60'); /* Replace with your image URL */
+      /* background-size: cover; */
+      background-position: center;
+      background-repeat: no-repeat;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+  <!-- Form Container -->
+  <div class="bg-white bg-opacity-90 shadow-lg rounded-lg px-10 py-8 w-[500px]">
+    <h2 class="text-3xl font-bold text-center mb-4">Create new Account</h2>
+    <p class="text-center text-gray-600 mb-8">
+      Already Registered? 
+      <a href="/login" class="text-blue-500 underline">Login</a>
+    </p>
+    <form action="/login" method="POST" class="space-y-6">
+      <!-- Name Field -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+        <input type="text" id="name" name="name" placeholder="Jiara Martins" required 
+               class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <!-- Email Field -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" name="email" placeholder="hello@reallygreatsite.com" required 
+               class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <!-- Password Field -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" name="password" placeholder="*******" required 
+               class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <!-- Date of Birth Field -->
+      <div>
+        <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+        <select id="dob" name="dob" required 
+                class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+          <option value="">Select</option>
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
+          <option value="2002">2002</option>
+          <option value="2003">2003</option>
+        </select>
+      </div>
+      <!-- Submit Button -->
+      <button type="submit" 
+              class="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition">
+        Sign Up
+      </button>
+    </form>
+  </div>
+</body>
+</html>

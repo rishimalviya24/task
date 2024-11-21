@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            fadeIn: 'fadeIn 1s ease-in-out',
+            slideUp: 'slideUp 0.8s ease-out',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(50px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 h-screen flex items-center justify-center text-white">
+
+  <div class="container mx-auto px-4 text-center">
+    <!-- Title Section -->
+    <h1 class="text-5xl md:text-6xl font-bold mb-4 animate-fadeIn">
+      Welcome to <span class="text-yellow-300">Our Platform</span>
+    </h1>
+    <p class="text-lg md:text-xl mb-8 animate-slideUp">
+      Join us and experience the best services tailored for you!
+    </p>
+
+    <!-- Buttons Section -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-slideUp">
+      <a href="/register"
+        class="bg-white text-purple-600 font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-purple-100 transition duration-300">
+        Sign Up
+    </a>
+      <a href="/login" class="bg-yellow-400 text-white font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-yellow-500 transition duration-300"> Log In</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-10 text-sm opacity-70 animate-fadeIn">
+      © 2024 Connecting Small Traders. All rights reserved.
+    </footer>
+  </div>
+
+</body>
+</html>
