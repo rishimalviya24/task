@@ -71,204 +71,68 @@ app.post("/login", async (req, res) => {
 
 // Profile page-----
 
-app.get('/profile', async (req,res) => {
-    // const { username, password , email}= req.query;
-    res.render('profile' , { username , email});
-})
-
-app.post('/profile', async (req,res ) => {
-    const { username , email , password} = req.body;
-    const hashedPassword  = await bcrypt.hash(password,10);
-    const token = jwt.sign({email}, 'secret');
-    const user = new user({ name, email, password: hashedPassword , token});
-    try{
-        await user.save();
-        res.redirect(`/profile?name =${name} &email = ${email}`);
-        console.log('user saved successfully',user);    
-    }catch(error){
-        console.error('User successfully', user);
-        res.status(500).send('Internal Server Error');        
-    }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  app.get('/profile',(req,res) => {
-//  res.render('profile');
-//  })
-
-// app.get("/profile", protectedRoute, async (req, res) => {
-//   try {
-//     const token = req.cookies.token;
-//     const decoded = jwt.verify(token, "secret"); // Decode JWT token
-
-//     const user = await User.findOne({ email: decoded.email });
-//     if (!user) {
-//       return res.redirect("/");
+// app.get('/profile', async (req,res) => {
+//     // const { username, password , email}= req.query;
+//     res.render('profile' , { username , email});
+// })
+
+// app.post('/profile', async (req,res ) => {
+//     const { username , email , password} = req.body;
+//     const hashedPassword  = await bcrypt.hash(password,10);
+//     const token = jwt.sign({email}, 'secret');
+//     const user = new user({ name, email, password: hashedPassword , token});
+//     try{
+//         await user.save();
+//         res.redirect(`/profile?name =${name} &email = ${email}`);
+//         console.log('user saved successfully',user);    
+//     }catch(error){
+//         console.error('User successfully', user);
+//         res.status(500).send('Internal Server Error');        
 //     }
+// })
 
-//     res.render("profile", { user }); // Render profile page with user data
-//   } catch (error) {
-//     console.error("Error rendering profile:", error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
 
-// // Protected route middleware
-// function protectedRoute(req, res, next) {
-//   const token = req.cookies.token;
 
-//   if (!token) {
-//     return res.redirect("/"); // Redirect to home if no token
-//   }
 
-//   try {
-//     jwt.verify(token, "secret"); // Verify the token
-//     next();
-//   } catch (error) {
-//     console.error("Invalid token:", error);
-//     res.redirect("/"); // Redirect to home on invalid token
-//   }
-// }
+ app.get('/profile',(req,res) => {
+ res.render('profile');
+ })
 
-// // Start the server
-// app.listen(3000, () => {
-//   console.log("Server is running on http://localhost:3000");
-// });
+app.get("/profile", protectedRoute, async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    const decoded = jwt.verify(token, "secret"); // JWT token
+
+    const user = await User.findOne({ email: decoded.email });
+    if (!user) {
+      return res.redirect("/");
+    }
+
+    res.render("profile", { user }); // Render profile page with user data
+  } catch (error) {
+    console.error("Error rendering profile:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Protected route middleware
+function protectedRoute(req, res, next) {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.redirect("/"); // Redirect to home if no token
+  }
+
+  try {
+    jwt.verify(token, "secret"); // Verify the token
+    next();
+  } catch (error) {
+    console.error("Invalid token:", error);
+    res.redirect("/"); // Redirect to home on invalid token
+  }
+}
+
+// Start the server
+app.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
+});
